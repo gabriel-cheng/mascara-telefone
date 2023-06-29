@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        html,
+        body {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        input {
+            margin: 0 0 10px 0;
+            outline: none;
+            height: 30px;
+            width: 320px;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <form action="">
+        <div class="">
+            <input class="a" type="tel" placeholder="Informe seu número" maxlength="15">
+        </div>
+        <div class="">
+            <input type="number" placeholder="Informe seu cpf">
+        </div>
+    </form>
+
+    <script>
+        const cell = document.querySelector(".a");
+
+        function regex(input) {
+            input = input.replace(/\D/g,"");
+            input = input.replace(/^(\d{2})(\d)/g,"($1) $2");
+            input = input.replace(/(\d)(\d{4})$/,"$1-$2");
+
+            return input;
+        }
+
+        function mask(input, regex){
+            setTimeout(() => {
+                input.value = regex(input.value);
+            }, 1);
+        }
+
+        cell.onkeypress = function(){
+            mask(cell, regex);
+        }
+    </script>
+</body>
+</html>
